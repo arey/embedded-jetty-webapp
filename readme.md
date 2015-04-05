@@ -1,4 +1,4 @@
-# Embbeded Jetty web application Batch Toolkit #
+# Embbeded Jetty web application #
 
 This project shows how to build a WAR-less Java web application with Jetty.
 
@@ -27,15 +27,24 @@ mvn clean install
 ```
 
 Start the web application
-```target/appassembler/bin/start.sh &```
+
+```
+target/appassembler/bin/start.sh &
+```
 
 Stop the web application
-```target/appassembler/bin/stop.sh```
+
+```
+target/appassembler/bin/stop.sh
+```
 
 Browse to [http://localhost:8080/HelloWorld](http://localhost:8080/HelloWorld)
 
 Web port could be changed at startup:
-```target/appassembler/bin/start.sh 80 8090 &```
+
+```
+target/appassembler/bin/start.sh 80 8090 &
+```
 
 ## Configuration rules ##
 
