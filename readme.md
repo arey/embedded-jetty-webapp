@@ -46,6 +46,12 @@ Web port could be changed at startup:
 target/appassembler/bin/start.sh 80 8090 &
 ```
 
+Another possibility is to build a JAR that include all its dependencies (web app, jetty dependencies, logger, spring ...) :
+```
+mvn clean install -Pfatjar
+java -jar target/jetty-webapp-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 ## Configuration rules ##
 
 Compared to the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
