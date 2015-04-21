@@ -206,51 +206,6 @@
                     </archive>
                 </configuration>
             </plugin>
-            <!-- Generate both Windows and Linux bash shell exucution scripts -->
-            <!-- Java 7 should be on path -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>appassembler-maven-plugin</artifactId>
-                <version>${version.plugin.appassembler-maven-plugin}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>assemble</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <repositoryLayout>flat</repositoryLayout>
-                    <useWildcardClassPath>true</useWildcardClassPath>
-                    <!-- Set the target configuration directory to be used in the bin scripts -->
-                    <configurationDirectory>conf</configurationDirectory>
-                    <!-- Copy the contents from "/src/main/config" to the target
-                         configuration directory in the assembled application -->
-                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
-                    <!-- Include the target configuration directory in the beginning of
-                         the classpath declaration in the bin scripts -->
-                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
-
-                    <!-- Extra JVM arguments that will be included in the bin scripts -->
-                    <extraJvmArguments>-Xmx1024m</extraJvmArguments>
-
-                    <programs>
-                        <program>
-                            <id>start</id>
-                            <mainClass>com.javaetmoi.jetty.JettyServer</mainClass>
-                            <name>start</name>
-                        </program>
-                        <program>
-                            <id>stop</id>
-                            <mainClass>com.javaetmoi.jetty.Stop</mainClass>
-                            <name>stop</name>
-                        </program>
-                    </programs>
-                    <binFileExtensions>
-                        <unix>.sh</unix>
-                    </binFileExtensions>
-                </configuration>
-            </plugin>
         </plugins>
 
 
@@ -359,6 +314,64 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <profile>
+            <id>appassembler</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Generate both Windows and Linux bash shell execution scripts -->
+                    <!-- Java 7 should be on path -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>appassembler-maven-plugin</artifactId>
+                        <version>${version.plugin.appassembler-maven-plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>assemble</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <repositoryLayout>flat</repositoryLayout>
+                            <useWildcardClassPath>true</useWildcardClassPath>
+                            <!-- Set the target configuration directory to be used in the bin scripts -->
+                            <configurationDirectory>conf</configurationDirectory>
+                            <!-- Copy the contents from "/src/main/config" to the target
+                                 configuration directory in the assembled application -->
+                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                            <!-- Include the target configuration directory in the beginning of
+                                 the classpath declaration in the bin scripts -->
+                            <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+
+                            <!-- Extra JVM arguments that will be included in the bin scripts -->
+                            <extraJvmArguments>-Xmx1024m</extraJvmArguments>
+
+                            <programs>
+                                <program>
+                                    <id>start</id>
+                                    <mainClass>com.javaetmoi.jetty.JettyServer</mainClass>
+                                    <name>start</name>
+                                </program>
+                                <program>
+                                    <id>stop</id>
+                                    <mainClass>com.javaetmoi.jetty.Stop</mainClass>
+                                    <name>stop</name>
+                                </program>
+                            </programs>
+                            <binFileExtensions>
+                                <unix>.sh</unix>
+                            </binFileExtensions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+
+            </build>
+
         </profile>
     </profiles>
 
