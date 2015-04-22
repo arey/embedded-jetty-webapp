@@ -1,4 +1,4 @@
-# Embbeded Jetty web application #
+# Embedded Jetty web application #
 
 This project shows how to build a WAR-less Java web application with Jetty.
 
@@ -50,6 +50,7 @@ Another possibility is to build a JAR that include all its dependencies (web app
 ```
 mvn clean install -Pfatjar
 java -jar target/jetty-webapp-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+java -cp target/jetty-webapp-1.0.0-SNAPSHOT-jar-with-dependencies.jar com.javaetmoi.jetty.Stop
 ```
 
 ## Configuration rules ##
