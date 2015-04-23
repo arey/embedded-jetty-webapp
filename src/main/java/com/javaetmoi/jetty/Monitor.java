@@ -48,12 +48,12 @@ public class Monitor extends Thread {
                     try {
                         socket.close();
                     } catch (Exception e) {
-                        LOGGER.debug(e.getMessage(), e);
+                        LOGGER.warn(e.getMessage(), e);
                     }
                     try {
                         serverSocket.close();
                     } catch (Exception e) {
-                        LOGGER.debug(e.getMessage(), e);
+                        LOGGER.warn(e.getMessage(), e);
                     }
                     serverSocket = null;
 
