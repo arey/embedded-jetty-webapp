@@ -51,11 +51,6 @@ public class Monitor extends Thread {
                         LOGGER.debug(e.getMessage(), e);
                     }
                     try {
-                        socket.close();
-                    } catch (Exception e) {
-                        LOGGER.debug(e.getMessage(), e);
-                    }
-                    try {
                         serverSocket.close();
                     } catch (Exception e) {
                         LOGGER.debug(e.getMessage(), e);
