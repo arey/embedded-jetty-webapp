@@ -18,7 +18,7 @@ public class JettyServer {
 
     public static final String WEBAPP_RESOURCES_LOCATION = "webapp";
     static final int DEFAULT_PORT_STOP = 8090;
-    static final String STOP_KEY = "stopKey";
+    static final String STOP_COMMAND = "stop";
     private static final int DEFAULT_PORT_START = 8080;
     private static final Logger LOGGER = LoggerFactory.getLogger(JettyServer.class);
     private final int startPort;
@@ -54,7 +54,7 @@ public class JettyServer {
             LOGGER.info("Jetty stopping...");
             s.setSoLinger(false, 0);
             OutputStream out = s.getOutputStream();
-            out.write((JettyServer.STOP_KEY + "\r\nstop\r\n").getBytes());
+            out.write(("stop\r\n").getBytes());
             out.flush();
             s.close();
         } catch (ConnectException e) {
@@ -105,9 +105,9 @@ public class JettyServer {
 
         LOGGER.info("Jetty server started");
         LOGGER.debug("Jetty web server port: {}", startPort);
-        LOGGER.debug("Port to stop Jetty with {}: {}", STOP_KEY, stopPort);
+        LOGGER.debug("Port to stop Jetty with the 'stop' operation: {}", stopPort);
 
-        Monitor monitor = new Monitor(stopPort, STOP_KEY, new Server[]{server});
+        Monitor monitor = new Monitor(stopPort, new Server[]{server});
         monitor.start();
 
         server.join();

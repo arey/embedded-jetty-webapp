@@ -21,16 +21,13 @@ public class Monitor extends Thread {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Monitor.class);
 
-    private String key;
     private Server[] servers;
     ServerSocket serverSocket;
 
-    public Monitor(int port, String key, Server[] servers) throws UnknownHostException, IOException {
-        if (port <= 0)
+    public Monitor(int port, Server[] servers) throws UnknownHostException, IOException {
+        if (port <= 0) {
             throw new IllegalStateException("Bad stop PORT");
-        if (key == null)
-            throw new IllegalStateException("Bad stop key");
-        this.key = key;
+        }
         this.servers = servers;
         setDaemon(true);
         setName("StopJettyMonitor");
@@ -46,9 +43,6 @@ public class Monitor extends Thread {
                 socket.setSoLinger(false, 0);
                 LineNumberReader lin = new LineNumberReader(new InputStreamReader(
                         socket.getInputStream()));
-                String key = lin.readLine();
-                if (!this.key.equals(key))
-                    continue;
                 String cmd = lin.readLine();
                 if ("stop".equals(cmd)) {
                     try {
