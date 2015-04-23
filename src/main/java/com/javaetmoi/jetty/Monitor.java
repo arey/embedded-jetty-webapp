@@ -10,7 +10,6 @@ import java.io.LineNumberReader;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * Listens for stop commands and causes jetty to stop by stopping the server instance.
@@ -22,9 +21,9 @@ public class Monitor extends Thread {
     private static Logger LOGGER = LoggerFactory.getLogger(Monitor.class);
 
     private Server[] servers;
-    ServerSocket serverSocket;
+    private ServerSocket serverSocket;
 
-    public Monitor(int port, Server[] servers) throws UnknownHostException, IOException {
+    public Monitor(int port, Server[] servers) throws IOException {
         if (port <= 0) {
             throw new IllegalStateException("Bad stop PORT");
         }
@@ -78,7 +77,6 @@ public class Monitor extends Thread {
                         LOGGER.debug(e.getMessage(), e);
                     }
                 }
-                socket = null;
             }
         }
     }
