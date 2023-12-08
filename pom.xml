@@ -57,7 +57,7 @@
         <!-- Version of third libraries -->
         <version.javax-servlet>3.1.0</version.javax-servlet>
         <version.jetty>9.4.17.v20190418</version.jetty>
-        <version.logback>1.1.2</version.logback>
+        <version.logback>1.2.13</version.logback>
         <version.slf4j>1.7.7</version.slf4j>
 
         <!-- Version of maven plugins -->
